@@ -1,0 +1,64 @@
+// ConsoleApplication17.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+double a = 1;
+// Variable (a) is user-supplied argument.
+double b = 1;
+double c = 1;
+double d = 1;
+double p = 1;
+double m, n;
+// Counter (m) is a double because we divide by it.
+int intm;
+// We also need (m) to be an int for the parity operations.
+int parm;
+int sigm;
+// This will govern the +/- behavior of the sin, cos terms.
+// For alternating pairs, we divide by 2 and throw away the remainder.
+// Since (sigm) is always 1 or 0, we can compactly write "if (sigm)".
+double outEx;
+double outSin = 0;
+double outCos = 1;
+
+
+double func01(double) {
+	std::cout << "Enter a degreee of precision (integer n):\n";
+	std::cin >> n;
+	std::cout << "Enter an argument (real number a):\n";
+	std::cin >> a;
+	for (m = 1; m <= n; m++) {
+		d = d * a;
+		// Power (m) of argument (a).
+		p = p * m;
+		// Factorial (p) of iteration (m).
+		c = d / p;
+		// Term (m) of exponent series.
+		b = b + c;
+		// Exponent series to term (m).
+		intm = int(m);
+		parm = intm % 2;
+		sigm = ((intm / 2) + 1) % 2;
+		if (parm == 0 ) {
+			(sigm) ? outCos = outCos + c : outCos = outCos - c;
+			}
+		else {
+			(sigm) ? outSin = outSin + c : outSin = outSin - c;
+		}
+		std::cout << "Iteration (m): " << m << '\n';
+		std::cout << "Parity (intm mod 2):  " << parm << '\n';
+		std::cout << "Sign (m):  " << sigm << '\n';	
+		std::cout << "Exponent (e^a): " << b << '\n';
+		std::cout << "Sin (sin): " << outSin << '\n';
+		std::cout << "Cosine (cos): " << outCos << "\n\n";
+	}
+	return 0;
+}
+
+
+int main()
+{
+    std::cout << "Hello Exponent, Sine, Cosine!\n";
+	func01(a);
+}
+
